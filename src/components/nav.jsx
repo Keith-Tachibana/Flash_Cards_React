@@ -8,6 +8,7 @@ class Nav extends Component {
       review: false,
       create: false
     }
+    // this.renderClass = this.renderClass.bind(this);
     this.handleClickView = this.handleClickView.bind(this);
     this.handleClickReview = this.handleClickReview.bind(this);
     this.handleClickCreate = this.handleClickCreate.bind(this);
@@ -45,6 +46,29 @@ class Nav extends Component {
     })
     setView('create-card');
   }
+
+  /*
+  renderClass() {
+    const { view } = this.props;
+    console.log('View:', view);
+    let cssClass = null;
+    switch(view) {
+      case 'create-card':
+        cssClass = "nav-link link active";
+        break;
+      case 'review-cards':
+        cssClass = "nav-link link active";
+        break;
+      case 'view-cards':
+        cssClass = "nav-link link active";
+        break;
+      default:
+        cssClass = "nav-link link";
+        break;
+    };
+    return cssClass;
+  }
+  */
 
   renderClassView() {
     if (this.state.view) {

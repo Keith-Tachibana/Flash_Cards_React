@@ -9,10 +9,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'view-cards'
+      view: 'view-cards',
+      cards: []
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
+    this.saveCards = this.saveCards.bind(this);
+    this.addCard = this.addCard.bind(this);
   }
 
   setView(view) {
@@ -24,7 +27,7 @@ class App extends Component {
   getView() {
     switch(this.state.view) {
       case 'create-card':
-        return <CreateCard />;
+        return <CreateCard addCard={this.addCard} setView={this.setView} />;
       case 'review-cards':
         return <ReviewCards />;
       case 'view-cards':
@@ -34,11 +37,28 @@ class App extends Component {
     };
   }
 
+  componentDidUpdate() {
+    this.saveCards();
+  }
+
+  saveCards() {
+    const json = JSON.stringify(this.state.cards);
+    console.log('JSON:', json);
+    localStorage.setItem('flash-cards', json);
+  }
+
+  addCard(card) {
+    this.setState({
+      cards: this.state.cards.concat(card)
+    }, this.saveCards());
+  }
+
   render() {
+    console.log('Cards From App:', this.state.cards);
     return (
       <React.Fragment>
         <div>
-          <Nav setView={this.setView} />
+          <Nav setView={this.setView} view={this.state.view} />
           {this.getView()}
         </div>
       </React.Fragment>
