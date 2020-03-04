@@ -95,7 +95,6 @@ class Nav extends Component {
   }
 
   render() {
-    const { setView } = this.props;
     return (
       <React.Fragment>
         <nav>

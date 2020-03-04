@@ -31,7 +31,7 @@ class App extends Component {
       case 'review-cards':
         return <ReviewCards />;
       case 'view-cards':
-        return <ViewCards />;
+        return <ViewCards cards={this.state.cards} />;
       default:
         return null;
     };
@@ -43,7 +43,6 @@ class App extends Component {
 
   saveCards() {
     const json = JSON.stringify(this.state.cards);
-    console.log('JSON:', json);
     localStorage.setItem('flash-cards', json);
   }
 
