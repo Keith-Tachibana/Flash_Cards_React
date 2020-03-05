@@ -24,7 +24,7 @@ class ReviewCards extends Component {
       return (this.state.imageIndex === cards.length - 1)
         ? { imageIndex: 0 }
         : { imageIndex: this.state.imageIndex + 1 }
-    }, () => setActiveCard(this.state.imageIndex));
+    }, setActiveCard(this.state.imageIndex));
   }
 
   previousCard() {
@@ -33,7 +33,7 @@ class ReviewCards extends Component {
       return (this.state.imageIndex === 0)
         ? { imageIndex: cards.length - 1 }
         : { imageIndex: this.state.imageIndex - 1 }
-    }, () => setActiveCard(this.state.imageIndex));
+    }, setActiveCard(this.state.imageIndex));
   }
 
   showCard() {
@@ -69,7 +69,6 @@ class ReviewCards extends Component {
     this.setState({
       front: !this.state.front
     });
-    console.log('Front:', this.state.front);
   }
 
   render() {

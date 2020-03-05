@@ -26,6 +26,11 @@
   padding-right: 15px;
 }
 
+.previous:hover,
+.next:hover {
+  color: #ddd;
+}
+
 .card-wrapper {
   height: 100%;
   width: 100%;
@@ -40,4 +45,44 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.delete {
+  color: #FF0000;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 29%;
+}
+
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  z-index: 1;
+  width: 50%;
+  height: 35%;
+  padding: 50px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+
+
 }

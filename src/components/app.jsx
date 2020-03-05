@@ -11,11 +11,13 @@ class App extends Component {
     this.state = {
       view: 'view-cards',
       cards: localStorage.getItem('flash-cards') ? JSON.parse(localStorage.getItem('flash-cards')) : [],
-      activeCard: null
+      activeCard: null,
+      modal: null
     };
     this.setView = this.setView.bind(this);
     this.addCard = this.addCard.bind(this);
     this.setActiveCard = this.setActiveCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   componentDidUpdate() {
@@ -31,11 +33,23 @@ class App extends Component {
   getView() {
     switch(this.state.view) {
       case 'create-card':
-        return <CreateCard addCard={this.addCard} setView={this.setView} />;
+        return <CreateCard
+                addCard={this.addCard}
+                setView={this.setView}
+               />;
       case 'review-cards':
-        return <ReviewCards activeCard={this.state.activeCard} setActiveCard={this.setActiveCard} cards={this.state.cards}/>;
+        return <ReviewCards
+                activeCard={this.state.activeCard}
+                setActiveCard={this.setActiveCard}
+                cards={this.state.cards}
+               />;
       case 'view-cards':
-        return <ViewCards cards={this.state.cards} />;
+        return <ViewCards
+                cards={this.state.cards}
+                activeCard={this.state.activeCard}
+                setActiveCard={this.setActiveCard}
+                deleteCard={this.deleteCard}
+               />;
       default:
         return null;
     };
@@ -49,7 +63,7 @@ class App extends Component {
   addCard(card) {
     this.setState({
       cards: this.state.cards.concat(card)
-    }, () => this.saveCards());
+    }, this.saveCards());
   }
 
   setActiveCard(index) {
@@ -58,6 +72,15 @@ class App extends Component {
     this.setState({
       activeCard
     });
+    console.log('Active Card:', activeCard);
+  }
+
+  deleteCard(deletedCard) {
+    const oldCards = this.state.cards;
+    const deletedCardIndex = oldCards.findIndex(card => deletedCard === card);
+    const newCards = [...oldCards];
+    newCards.splice(deletedCardIndex, 1);
+    this.setState({ cards: newCards, modal: null }, () => this.saveCards());
   }
 
   render() {
