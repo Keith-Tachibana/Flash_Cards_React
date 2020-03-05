@@ -10,12 +10,18 @@ class App extends Component {
     super(props);
     this.state = {
       view: 'view-cards',
-      cards: []
+      cards: [],
+      activeCard: null
     };
     this.setView = this.setView.bind(this);
     this.getView = this.getView.bind(this);
     this.saveCards = this.saveCards.bind(this);
     this.addCard = this.addCard.bind(this);
+    this.setActiveCard = this.setActiveCard.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.saveCards();
   }
 
   setView(view) {
@@ -29,16 +35,12 @@ class App extends Component {
       case 'create-card':
         return <CreateCard addCard={this.addCard} setView={this.setView} />;
       case 'review-cards':
-        return <ReviewCards />;
+        return <ReviewCards activeCard={this.state.activeCard} setActiveCard={this.setActiveCard} cards={this.state.cards}/>;
       case 'view-cards':
         return <ViewCards cards={this.state.cards} />;
       default:
         return null;
     };
-  }
-
-  componentDidUpdate() {
-    this.saveCards();
   }
 
   saveCards() {
@@ -52,8 +54,21 @@ class App extends Component {
     }, this.saveCards());
   }
 
+  setActiveCard(index) {
+    const { cards } = this.state;
+    let foundCard = null;
+    for (let i = 0; i < cards.length; i++) {
+      if (i === index) {
+        foundCard = cards[i];
+        console.log('Found Card:', foundCard);
+      }
+    }
+    this.setState({
+      activeCard: foundCard
+    });
+  }
+
   render() {
-    console.log('Cards From App:', this.state.cards);
     return (
       <React.Fragment>
         <div>

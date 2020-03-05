@@ -1,3 +1,24 @@
 .link {
   cursor: pointer;
 }
+
+.carousel {
+  display: flex;
+  height: 800px;
+}
+
+.card-container {
+  margin: auto;
+}
+
+.previous {
+  transform: translateY(40%);
+  cursor: pointer;
+  padding-left: 15px;
+}
+
+.next {
+  transform: translateY(40%);
+  cursor: pointer;
+  padding-right: 15px;
+}
