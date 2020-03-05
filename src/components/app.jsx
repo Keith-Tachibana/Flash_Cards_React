@@ -10,12 +10,10 @@ class App extends Component {
     super(props);
     this.state = {
       view: 'view-cards',
-      cards: [],
+      cards: localStorage.getItem('flash-cards') ? JSON.parse(localStorage.getItem('flash-cards')) : [],
       activeCard: null
     };
     this.setView = this.setView.bind(this);
-    this.getView = this.getView.bind(this);
-    this.saveCards = this.saveCards.bind(this);
     this.addCard = this.addCard.bind(this);
     this.setActiveCard = this.setActiveCard.bind(this);
   }
@@ -51,20 +49,14 @@ class App extends Component {
   addCard(card) {
     this.setState({
       cards: this.state.cards.concat(card)
-    }, this.saveCards());
+    }, () => this.saveCards());
   }
 
   setActiveCard(index) {
     const { cards } = this.state;
-    let foundCard = null;
-    for (let i = 0; i < cards.length; i++) {
-      if (i === index) {
-        foundCard = cards[i];
-        console.log('Found Card:', foundCard);
-      }
-    }
+    const activeCard = cards[index];
     this.setState({
-      activeCard: foundCard
+      activeCard
     });
   }
 

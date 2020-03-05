@@ -4,13 +4,13 @@ class ReviewCards extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      side: 'front',
+      front: true,
       imageIndex: 0
     };
 
     this.nextCard = this.nextCard.bind(this);
     this.previousCard = this.previousCard.bind(this);
-    this.displayCard = this.displayCard.bind(this);
+    this.flipCard = this.flipCard.bind(this);
   }
 
   componentDidMount() {
@@ -18,38 +18,58 @@ class ReviewCards extends Component {
     setActiveCard(0);
   }
 
-  componentDidUpdate() {
-    const { activeCard } = this.props;
-    console.log('Active Card:', activeCard);
-    this.displayCard();
-  }
-
   nextCard() {
-    const { cards, setActiveCard, activeCard } = this.props;
-    if (activeCard === cards[cards.length - 1]) {
-      setActiveCard(0);
-    } else {
-      const foundIndex = cards.findIndex(card => card === activeCard);
-      setActiveCard(foundIndex + 1);
-    }
+    const { cards, setActiveCard } = this.props;
+    this.setState(() => {
+      return (this.state.imageIndex === cards.length - 1)
+        ? { imageIndex: 0 }
+        : { imageIndex: this.state.imageIndex + 1 }
+    }, () => setActiveCard(this.state.imageIndex));
   }
 
   previousCard() {
-    const { cards, setActiveCard, activeCard } = this.props;
-    if (activeCard === cards[0]) {
-      setActiveCard(cards[cards.length - 1]);
+    const { cards, setActiveCard } = this.props;
+    this.setState(() => {
+      return (this.state.imageIndex === 0)
+        ? { imageIndex: cards.length - 1 }
+        : { imageIndex: this.state.imageIndex - 1 }
+    }, () => setActiveCard(this.state.imageIndex));
+  }
+
+  showCard() {
+    const { activeCard } = this.props;
+    if (activeCard === null) {
+      return;
     } else {
-      const foundIndex = cards.findIndex(card => card === activeCard);
-      setActiveCard(foundIndex - 1);
+      return (
+        this.state.front
+          ? <React.Fragment>
+              <div className="carousel bg-dark">
+                <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
+                <div className="card-wrapper" onClick={this.flipCard}>
+                  <div className="card-container text-white">{activeCard.question}</div>
+                </div>
+                <i className="next fas fa-chevron-right fa-5x" onClick={this.nextCard}></i>
+              </div>
+            </React.Fragment>
+          : <React.Fragment>
+              <div className="carousel bg-secondary">
+                <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
+                <div className="card-wrapper" onClick={this.flipCard}>
+                  <div className="card-container text-white">{activeCard.answer}</div>
+                </div>
+                <i className="next fas fa-chevron-right fa-5x" onClick={this.nextCard}></i>
+              </div>
+            </React.Fragment>
+      );
     }
   }
 
-  displayCard() {
-    const { cards, setActiveCard, activeCard } = this.props;
-    console.log('Active Card:', activeCard);
-    return this.state.side === 'front'
-      ? activeCard['question']
-      : activeCard['answer'];
+  flipCard() {
+    this.setState({
+      front: !this.state.front
+    });
+    console.log('Front:', this.state.front);
   }
 
   render() {
@@ -58,15 +78,9 @@ class ReviewCards extends Component {
         <header>
           <h1 className="text-center">Review Cards</h1>
         </header>
-        <main className="container">
+        <main className="container mt-4">
           <div className="row">
-            <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <div className="carousel">
-                <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
-                <div className="card-container">{this.props.activeCard['question']}</div>
-                <i className="next fas fa-chevron-right fa-5x" onClick={this.nextCard}></i>
-              </div>
-            </div>
+            <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">{this.showCard()}</div>
           </div>
         </main>
       </React.Fragment>
