@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class ViewCards extends Component {
   render() {
-    const { cards, renderModal, setView } = this.props;
+    const { cards, renderModal, renderUpdate } = this.props;
     const flashCards = cards.map(card => {
       return (
         <div key={card.question} className="col mb-4">
@@ -16,7 +16,7 @@ class ViewCards extends Component {
               <p className="card-text text-white">{card.answer}</p>
             </div>
             <div className="card-footer bg-dark text-center">
-              <i className="edit text-primary fas fa-edit fa-2x mr-2" onClick={() => setView('update-card')}></i>
+              <i className="edit text-primary fas fa-edit fa-2x mr-2" onClick={() => renderUpdate(card)}></i>
               <i className="delete fas fa-trash-alt fa-2x ml-2" onClick={() => renderModal(card)}></i>
             </div>
           </div>
