@@ -12,7 +12,7 @@ class App extends Component {
       view: 'view-cards',
       cards: localStorage.getItem('flash-cards') ? JSON.parse(localStorage.getItem('flash-cards')) : [],
       activeCard: null,
-      modal: null
+      imageIndex: 0
     };
     this.setView = this.setView.bind(this);
     this.addCard = this.addCard.bind(this);
@@ -42,6 +42,7 @@ class App extends Component {
                 activeCard={this.state.activeCard}
                 setActiveCard={this.setActiveCard}
                 cards={this.state.cards}
+                imageIndex={this.state.imageIndex}
                />;
       case 'view-cards':
         return <ViewCards
@@ -72,15 +73,18 @@ class App extends Component {
     this.setState({
       activeCard
     });
-    console.log('Active Card:', activeCard);
   }
 
-  deleteCard(deletedCard) {
-    const oldCards = this.state.cards;
-    const deletedCardIndex = oldCards.findIndex(card => deletedCard === card);
-    const newCards = [...oldCards];
-    newCards.splice(deletedCardIndex, 1);
-    this.setState({ cards: newCards, modal: null }, () => this.saveCards());
+  deleteCard(cardDeleted) {
+    const [ cards ] = this.state;
+    console.log('Cards:', cards);
+    const findIndex = cards.findIndex(card => card === cardDeleted);
+    const cardsCopy = [...cards];
+    console.log('Cards Copy:', cardsCopy);
+    cardsCopy.splice(findIndex, 1);
+    this.setState({
+      cards: cardsCopy
+    }, this.saveCards());
   }
 
   render() {

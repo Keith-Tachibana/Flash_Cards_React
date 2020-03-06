@@ -23,7 +23,9 @@ class ViewCards extends Component {
   }
 
   render() {
-    const { cards, displayModal, activeCard } = this.props;
+    const { cards, activeCard, deleteCard } = this.props;
+    console.log('Active Card:', activeCard);
+    console.log('Delete Card:', deleteCard);
     if (this.state.isOpen) {
       const flashCards = cards.map(card => {
         return (

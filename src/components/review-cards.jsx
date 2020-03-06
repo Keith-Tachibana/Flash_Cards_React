@@ -20,7 +20,7 @@ class ReviewCards extends Component {
 
   nextCard() {
     const { cards, setActiveCard } = this.props;
-    this.setState(() => {
+    this.setState(previous => {
       return (this.state.imageIndex === cards.length - 1)
         ? { imageIndex: 0 }
         : { imageIndex: this.state.imageIndex + 1 }
@@ -29,7 +29,7 @@ class ReviewCards extends Component {
 
   previousCard() {
     const { cards, setActiveCard } = this.props;
-    this.setState(() => {
+    this.setState(previous => {
       return (this.state.imageIndex === 0)
         ? { imageIndex: cards.length - 1 }
         : { imageIndex: this.state.imageIndex - 1 }
