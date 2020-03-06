@@ -4,6 +4,7 @@ import ViewCards from './view-cards';
 import ReviewCards from './review-cards';
 import CreateCard from './create-card';
 import Nav from './nav';
+import Modal from './modal';
 
 class App extends Component {
   constructor(props) {
@@ -12,12 +13,13 @@ class App extends Component {
       view: 'view-cards',
       cards: localStorage.getItem('flash-cards') ? JSON.parse(localStorage.getItem('flash-cards')) : [],
       activeCard: null,
-      imageIndex: 0
+      modal: null
     };
     this.setView = this.setView.bind(this);
     this.addCard = this.addCard.bind(this);
     this.setActiveCard = this.setActiveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   componentDidUpdate() {
@@ -42,14 +44,11 @@ class App extends Component {
                 activeCard={this.state.activeCard}
                 setActiveCard={this.setActiveCard}
                 cards={this.state.cards}
-                imageIndex={this.state.imageIndex}
                />;
       case 'view-cards':
         return <ViewCards
                 cards={this.state.cards}
-                activeCard={this.state.activeCard}
-                setActiveCard={this.setActiveCard}
-                deleteCard={this.deleteCard}
+                renderModal={this.renderModal}
                />;
       default:
         return null;
@@ -75,16 +74,21 @@ class App extends Component {
     });
   }
 
-  deleteCard(cardDeleted) {
-    const [ cards ] = this.state;
-    console.log('Cards:', cards);
-    const findIndex = cards.findIndex(card => card === cardDeleted);
+  deleteCard(cardToDelete) {
+    const { cards } = this.state;
+    const findIndex = cards.findIndex(card => card === cardToDelete);
     const cardsCopy = [...cards];
-    console.log('Cards Copy:', cardsCopy);
     cardsCopy.splice(findIndex, 1);
     this.setState({
-      cards: cardsCopy
+      cards: cardsCopy,
+      modal: null
     }, this.saveCards());
+  }
+
+  renderModal(card) {
+    this.setState({
+      modal: card
+    });
   }
 
   render() {
@@ -93,6 +97,7 @@ class App extends Component {
         <div>
           <Nav setView={this.setView} view={this.state.view} />
           {this.getView()}
+          <Modal modal={this.state.modal} renderModal={this.renderModal} deleteCard={this.deleteCard} />
         </div>
       </React.Fragment>
     );

@@ -48,7 +48,7 @@ class CreateCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <main>
+        <main className="create-container">
           <div className="row">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <form className="form" onSubmit={this.handleSubmit}>
@@ -58,20 +58,20 @@ class CreateCard extends Component {
                   <div className="form-row justify-content-center">
                     <div className="form-group">
                       <label htmlFor="question">Question:</label>
-                      <textarea name="question" onChange={this.handleChange} className="form-control" id="question" cols="122" rows="3"></textarea>
+                      <textarea name="question" onChange={this.handleChange} className="form-control" id="question" cols="122" rows="3" required="required"></textarea>
                     </div>
                   </div>
                   <div className="form-row justify-content-center">
                     <div className="form-group">
                       <label htmlFor="answer">Answer:</label>
-                      <textarea name="answer" onChange={this.handleChange} className="form-control" id="answer" cols="122" rows="3"></textarea>
+                      <textarea name="answer" onChange={this.handleChange} className="form-control" id="answer" cols="122" rows="3" required="required"></textarea>
                     </div>
                   </div>
+                  <div className="form-row justify-content-center">
+                    <button name="save" type="submit" className="btn btn-outline-primary mr-2">Save Card</button>
+                    <button name="cancel" type="reset" onClick={this.handleReset} className="btn btn-outline-danger ml-2">Cancel</button>
+                  </div>
                 </fieldset>
-                <div className="form-row justify-content-end">
-                  <button name="save" type="submit" className="btn btn-outline-primary mr-2">Save Card</button>
-                  <button name="cancel" type="reset" onClick={this.handleReset} className="btn btn-outline-danger ml-2">Cancel</button>
-                </div>
               </form>
             </div>
           </div>
