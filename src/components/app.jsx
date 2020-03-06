@@ -5,6 +5,7 @@ import ReviewCards from './review-cards';
 import CreateCard from './create-card';
 import Nav from './nav';
 import Modal from './modal';
+import UpdateCard from './update-card';
 
 class App extends Component {
   constructor(props) {
@@ -13,13 +14,15 @@ class App extends Component {
       view: 'view-cards',
       cards: localStorage.getItem('flash-cards') ? JSON.parse(localStorage.getItem('flash-cards')) : [],
       activeCard: null,
-      modal: null
+      modal: null,
+      update: null
     };
     this.setView = this.setView.bind(this);
     this.addCard = this.addCard.bind(this);
     this.setActiveCard = this.setActiveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.renderModal = this.renderModal.bind(this);
+    this.renderUpdate = this.renderUpdate.bind(this);
   }
 
   componentDidUpdate() {
@@ -49,7 +52,13 @@ class App extends Component {
         return <ViewCards
                 cards={this.state.cards}
                 renderModal={this.renderModal}
+                setView={this.setView}
                />;
+      case 'update-card':
+        return <UpdateCard
+                renderUpdate={this.renderUpdate}
+                update={this.state.update}
+               />
       default:
         return null;
     };
@@ -88,6 +97,12 @@ class App extends Component {
   renderModal(card) {
     this.setState({
       modal: card
+    });
+  }
+
+  renderUpdate(card) {
+    this.setState({
+      update: card
     });
   }
 
