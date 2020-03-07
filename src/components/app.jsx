@@ -14,13 +14,13 @@ class App extends Component {
       view: 'view-cards',
       cards: localStorage.getItem('flash-cards') ? JSON.parse(localStorage.getItem('flash-cards')) : [],
       activeCard: null,
-      modal: null,
-      update: null
+      modal: null
     };
     this.setView = this.setView.bind(this);
     this.addCard = this.addCard.bind(this);
     this.setActiveCard = this.setActiveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.updateCard = this.updateCard.bind(this);
     this.renderModal = this.renderModal.bind(this);
     this.renderUpdate = this.renderUpdate.bind(this);
   }
@@ -52,12 +52,13 @@ class App extends Component {
         return <ViewCards
                 cards={this.state.cards}
                 renderModal={this.renderModal}
-                setView={this.setView}
+                renderUpdate={this.renderUpdate}
                />;
       case 'update-card':
         return <UpdateCard
-                renderUpdate={this.renderUpdate}
-                update={this.state.update}
+                updateCard={this.updateCard}
+                activeCard={this.state.activeCard}
+                setView={this.setView}
                />
       default:
         return null;
@@ -94,15 +95,26 @@ class App extends Component {
     }, this.saveCards());
   }
 
+  updateCard(cardToUpdate) {
+    const { cards, activeCard } = this.state;
+    const findIndex = cards.findIndex(card => card === activeCard);
+    const cardsCopy = [...cards];
+    cardsCopy.splice(findIndex, 1, cardToUpdate);
+    this.setState({
+      cards: cardToUpdate
+    }, this.saveCards());
+  }
+
   renderModal(card) {
     this.setState({
       modal: card
     });
   }
 
-  renderUpdate(card) {
+  renderUpdate(cardToUpdate) {
     this.setState({
-      update: card
+      view: 'update-card',
+      activeCard: cardToUpdate
     });
   }
 
