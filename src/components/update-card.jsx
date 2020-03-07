@@ -10,6 +10,7 @@ class UpdateCard extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearFields = this.clearFields.bind(this);
   }
 
   handleChange(event) {
@@ -28,7 +29,7 @@ class UpdateCard extends Component {
     event.preventDefault();
     const { updateCard } = this.props;
     updateCard(this.state);
-    this.handleReset();
+    this.clearFields();
   }
 
   clearFields() {

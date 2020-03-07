@@ -71,9 +71,10 @@ class App extends Component {
   }
 
   addCard(card) {
+    const { cards } = this.state;
     this.setState({
-      cards: this.state.cards.concat(card)
-    }, this.saveCards());
+      cards: cards.concat(card)
+    }, () => this.saveCards());
   }
 
   setActiveCard(index) {
@@ -92,7 +93,7 @@ class App extends Component {
     this.setState({
       cards: cardsCopy,
       modal: null
-    }, this.saveCards());
+    }, () => this.saveCards());
   }
 
   updateCard(cardToUpdate) {
@@ -101,8 +102,8 @@ class App extends Component {
     const cardsCopy = [...cards];
     cardsCopy.splice(findIndex, 1, cardToUpdate);
     this.setState({
-      cards: cardToUpdate
-    }, this.saveCards());
+      cards: cardsCopy
+    }, () => this.saveCards());
   }
 
   renderModal(card) {
