@@ -42,8 +42,8 @@ class ReviewCards extends Component {
 
   showCard() {
     const { activeCard } = this.props;
-    if (activeCard === null) {
-      return;
+    if (!activeCard) {
+      return <h5 className="text-center mt-4"><em>Please create flash cards to review</em></h5>;
     } else {
       return (
         this.state.front
@@ -88,10 +88,8 @@ class ReviewCards extends Component {
   render() {
     return (
       <React.Fragment>
-        <header>
-          <h1 className="text-center">Review Cards</h1>
-        </header>
         <main className="container mt-4">
+          <h3 className="text-center">Review Cards</h3>
           <div className="row">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">{this.showCard()}</div>
           </div>

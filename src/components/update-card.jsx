@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class UpdateCard extends Component {
   constructor(props) {
@@ -33,13 +34,13 @@ class UpdateCard extends Component {
   }
 
   clearFields() {
-    const { setView } = this.props;
+    const { history } = this.props;
     const clearFields = {
       question: '',
       answer: ''
     };
     this.setState(clearFields);
-    setView('view-cards');
+    history.push('/');
   }
 
   render() {
@@ -107,4 +108,4 @@ class UpdateCard extends Component {
   }
 }
 
-export default UpdateCard;
+export default withRouter(UpdateCard);

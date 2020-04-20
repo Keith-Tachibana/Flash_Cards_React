@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 
 class ViewCards extends Component {
   render() {
@@ -16,8 +17,8 @@ class ViewCards extends Component {
               <p className="card-text text-white">{card.answer}</p>
             </div>
             <div className="card-footer bg-dark text-center">
-              <i className="edit text-primary fas fa-edit fa-2x mr-2" onClick={() => renderUpdate(card)}></i>
-              <i className="delete fas fa-trash-alt fa-2x ml-2" onClick={() => renderModal(card)}></i>
+              <i className="edit text-primary fas fa-edit fa-2x mr-2" onClick={() => renderModal(card, 'update')}></i>
+              <i className="delete fas fa-trash-alt fa-2x ml-2" onClick={() => renderModal(card, 'remove')}></i>
             </div>
           </div>
         </div>
@@ -25,10 +26,8 @@ class ViewCards extends Component {
     });
     return (
       <React.Fragment>
-        <header>
-          <h1 className="text-center mb-4">My Cards</h1>
-        </header>
         <main className="view-container">
+          <h3 className="text-center mt-4">My Cards</h3>
           <div className="row row-cols-3 row-cols-md-3">
             {flashCards}
           </div>
@@ -38,4 +37,4 @@ class ViewCards extends Component {
   }
 }
 
-export default ViewCards;
+export default withRouter(ViewCards);
