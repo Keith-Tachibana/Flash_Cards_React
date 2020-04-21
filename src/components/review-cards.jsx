@@ -10,7 +10,6 @@ class ReviewCards extends Component {
       imageIndex: 0,
       progress: 0
     };
-
     this.nextCard = this.nextCard.bind(this);
     this.previousCard = this.previousCard.bind(this);
     this.flipCard = this.flipCard.bind(this);
@@ -43,30 +42,30 @@ class ReviewCards extends Component {
   showCard() {
     const { activeCard } = this.props;
     if (!activeCard) {
-      return <h5 className="text-center mt-4"><em>Please create flash cards to review</em></h5>;
+      return <h4 className="text-center"><em>Please create a flash card to review</em></h4>;
     } else {
       return (
         this.state.front
           ? <React.Fragment>
-              <ProgressBar progress={this.state.progress}/>
-              <div className="carousel bg-dark">
-                <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
-                <div className="card-wrapper" onClick={this.flipCard}>
-                  <div className="card-container text-white">{activeCard.question}</div>
-                </div>
-                <i className="next fas fa-chevron-right fa-5x" onClick={this.nextCard}></i>
+            <ProgressBar progress={this.state.progress} />
+            <div className="carousel bg-dark">
+              <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
+              <div className="card-wrapper" onClick={this.flipCard}>
+                <div className="card-container text-white">{activeCard.question}</div>
               </div>
-            </React.Fragment>
+              <i className="next fas fa-chevron-right fa-5x" onClick={this.nextCard}></i>
+            </div>
+          </React.Fragment>
           : <React.Fragment>
-              <ProgressBar progress={this.state.progress}/>
-              <div className="carousel bg-secondary">
-                <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
-                <div className="card-wrapper" onClick={this.flipCard}>
-                  <div className="card-container text-white">{activeCard.answer}</div>
-                </div>
-                <i className="next fas fa-chevron-right fa-5x" onClick={this.nextCard}></i>
+            <ProgressBar progress={this.state.progress} />
+            <div className="carousel bg-secondary">
+              <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
+              <div className="card-wrapper" onClick={this.flipCard}>
+                <div className="card-container text-white">{activeCard.answer}</div>
               </div>
-            </React.Fragment>
+              <i className="next fas fa-chevron-right fa-5x" onClick={this.nextCard}></i>
+            </div>
+          </React.Fragment>
       );
     }
   }
@@ -89,14 +88,15 @@ class ReviewCards extends Component {
   render() {
     return (
       <React.Fragment>
+        <header>
+          <h1 className="text-center">Review Cards</h1>
+        </header>
         <main className="container mt-4">
-          <h3 className="text-center">Review Cards</h3>
           <div className="row">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">{this.showCard()}</div>
           </div>
         </main>
       </React.Fragment>
-
     );
   }
 }

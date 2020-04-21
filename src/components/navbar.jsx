@@ -1,35 +1,61 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: true,
+      review: false,
+      create: false
+    }
+    this.handleClickView = this.handleClickView.bind(this);
+    this.handleClickReview = this.handleClickReview.bind(this);
+    this.handleClickCreate = this.handleClickCreate.bind(this);
+  }
+
+  handleClickView() {
+    const { setView } = this.props;
+    this.setState({
+      view: true,
+      review: false,
+      create: false
+    }, view => setView('view-cards'));
+  }
+
+  handleClickReview() {
+    const { setView } = this.props;
+    this.setState({
+      view: false,
+      review: true,
+      create: false
+    }, view => setView('review-cards'));
+  }
+
+  handleClickCreate() {
+    const { setView } = this.props;
+    this.setState({
+      view: false,
+      review: false,
+      create: true
+    }, view => setView('create-card'));
+  }
+
   render() {
     return (
       <React.Fragment>
-        <div className="d-flex justify-content-between">
-          <header className="ml-4 mt-3 d-flex flex-column">
-            <h1>React Flash Cards</h1>
-            <p><em>by Keith Tachibana</em></p>
-          </header>
-          <nav className="mb-4 mr-4">
-            <ul className="nav nav-pills justify-content-end mt-4">
-              <Link to="/">
-                <li className="nav-link active mr-4">
-                  View Cards
-                </li>
-              </Link>
-              <Link to="/review">
-                <li className="nav-link active mr-4">
-                  Review
-                </li>
-              </Link>
-              <Link to="/create">
-                <li className="nav-link active">
-                  Create Card
-                </li>
-              </Link>
-            </ul>
-          </nav>
-        </div>
+        <nav>
+          <ul className="nav nav-pills justify-content-end mt-4">
+            <li className="nav-item">
+              <a onClick={this.handleClickView} className="nav-link link active mr-2">View Cards</a>
+            </li>
+            <li className="nav-item">
+              <a onClick={this.handleClickReview} className="nav-link link active mr-2">Review</a>
+            </li>
+            <li className="nav-item">
+              <a onClick={this.handleClickCreate} className="nav-link link active mr-2">Create Card</a>
+            </li>
+          </ul>
+        </nav>
       </React.Fragment>
     );
   }

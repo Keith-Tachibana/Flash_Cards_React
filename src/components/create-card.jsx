@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
 class CreateCard extends Component {
   constructor(props) {
@@ -37,23 +36,22 @@ class CreateCard extends Component {
   }
 
   clearFields() {
-    const { history } = this.props;
+    const { setView } = this.props;
     const clearFields = {
       question: '',
       answer: ''
     };
-    this.setState(clearFields);
-    history.push('/');
+    this.setState(clearFields, (view) => setView('view-cards'));
   }
 
   render() {
     return (
       <React.Fragment>
-        <main className="create-container m-4">
+        <main className="create-container">
           <div className="row">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <h3 className="text-center">Create New Card</h3>
               <form className="form" onSubmit={this.handleSubmit}>
+                <h1 className="text-center mb-4">Create New Card</h1>
                 <div className="form-row justify-content-center">
                   <div className="form-group">
                     <label htmlFor="question">Question:</label>
@@ -88,15 +86,15 @@ class CreateCard extends Component {
                   <button
                     name="save"
                     type="submit"
-                    className="btn btn-primary mr-2">
-                      Save Card
+                    className="btn btn-outline-primary mr-2">
+                    Save Card
                   </button>
                   <button
                     name="cancel"
                     type="reset"
                     onClick={this.handleReset}
-                    className="btn btn-danger ml-2">
-                      Cancel
+                    className="btn btn-outline-danger ml-2">
+                    Cancel
                   </button>
                 </div>
               </form>
@@ -108,4 +106,4 @@ class CreateCard extends Component {
   }
 }
 
-export default withRouter(CreateCard);
+export default CreateCard;

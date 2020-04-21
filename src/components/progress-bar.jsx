@@ -8,7 +8,7 @@ class ProgressBar extends Component {
     return(
       <React.Fragment>
         <div className="progress">
-          <Progress animated bar color="danger" value={realProgress} aria-valuemin="0" aria-valuemax="100"></Progress>
+          <Progress animated bar color="warning" value={realProgress} aria-valuemin="0" aria-valuemax="100"></Progress>
         </div>
       </React.Fragment>
     )
