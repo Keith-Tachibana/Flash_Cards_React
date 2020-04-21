@@ -58,6 +58,7 @@ class ReviewCards extends Component {
               </div>
             </React.Fragment>
           : <React.Fragment>
+              <ProgressBar progress={this.state.progress}/>
               <div className="carousel bg-secondary">
                 <i className="previous fas fa-chevron-left fa-5x" onClick={this.previousCard}></i>
                 <div className="card-wrapper" onClick={this.flipCard}>

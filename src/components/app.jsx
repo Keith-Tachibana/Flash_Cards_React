@@ -73,7 +73,6 @@ class App extends Component {
       modal: card,
       mode
     });
-    console.log('Card:', this.state.modal);
   }
 
   render() {
