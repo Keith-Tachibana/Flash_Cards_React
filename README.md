@@ -22,6 +22,7 @@ Try the application live on [my porftolio website](https://www.keith-tachibana.c
 - _*_ User has the option to edit or delete each card on the summary page
 - _*_ User can test his/her knowledge of the flash cards by going to the review page
 - _*_ User can skim through all the cards on the review page and click on each one to flip it and reveal the answer
+- _*_ User can still see the flash cards upon exiting the browser thanks to the utilization of local storage
 ## Preview
 ![Flash Cards Preview](preview.gif "Flash Cards Preview")
 ## Development
