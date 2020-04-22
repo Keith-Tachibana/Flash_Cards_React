@@ -5,14 +5,16 @@ class ViewCards extends Component {
     const { cards, renderModal, renderUpdate } = this.props;
     const flashCards = cards.map(card => {
       return (
-        <div key={card.question} className="col mb-4">
+        <div key={card.question} className="col mb-4 view-card">
           <div className="card h-100">
             <div className="card-body bg-dark">
-              <h5 className="card-title text-light">Question:</h5>
+              <h5 className="card-title text-light"><em>Question:</em></h5>
+              <hr className="bg-white" />
               <p className="card-text text-white">{card.question}</p>
             </div>
             <div className="card-body bg-secondary">
-              <h5 className="card-title text-light">Answer:</h5>
+              <h5 className="card-title text-light"><em>Answer:</em></h5>
+              <hr className="bg-white" />
               <p className="card-text text-white">{card.answer}</p>
             </div>
             <div className="card-footer bg-dark text-center">
@@ -26,10 +28,10 @@ class ViewCards extends Component {
     return (
       <React.Fragment>
         <header>
-          <h1 className="text-center mb-4">My Cards</h1>
+          <h2 className="text-center my-4 my-cards">My Cards</h2>
         </header>
         <main className="view-container">
-          <div className="row row-cols-3 row-cols-md-3">
+          <div className="row row-cols-3 row-cols-md-3 d-flex justify-content-center">
             {flashCards}
           </div>
         </main>

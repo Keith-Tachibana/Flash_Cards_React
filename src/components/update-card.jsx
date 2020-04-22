@@ -46,58 +46,55 @@ class UpdateCard extends Component {
     return (
       <React.Fragment>
         <main className="create-container">
-          <div className="row">
+          <div className="row m-auto">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <form className="form" onSubmit={this.handleSubmit}>
-                <h1 className="text-center mb-4">Update Card</h1>
-                <fieldset>
-                  <legend className="text-center">Flash Card</legend>
-                  <div className="form-row justify-content-center">
-                    <div className="form-group">
-                      <label htmlFor="question">Question:</label>
-                      <textarea
-                        name="question"
-                        className="form-control"
-                        id="question"
-                        cols="122"
-                        rows="3"
-                        required="required"
-                        value={this.state.question}
-                        onChange={this.handleChange}>
-                      </textarea>
-                    </div>
+              <form className="form update-form" onSubmit={this.handleSubmit}>
+                <h2 className="text-center my-4 my-cards">Update Card</h2>
+                <div className="form-row justify-content-center">
+                  <div className="form-group">
+                    <label htmlFor="question">Question:</label>
+                    <textarea
+                      name="question"
+                      className="form-control"
+                      id="question"
+                      cols="122"
+                      rows="3"
+                      required="required"
+                      value={this.state.question}
+                      onChange={this.handleChange}>
+                    </textarea>
                   </div>
-                  <div className="form-row justify-content-center">
-                    <div className="form-group">
-                      <label htmlFor="answer">Answer:</label>
-                      <textarea
-                        name="answer"
-                        className="form-control"
-                        id="answer"
-                        cols="122"
-                        rows="3"
-                        required="required"
-                        value={this.state.answer}
-                        onChange={this.handleChange}>
-                      </textarea>
-                    </div>
+                </div>
+                <div className="form-row justify-content-center">
+                  <div className="form-group">
+                    <label htmlFor="answer">Answer:</label>
+                    <textarea
+                      name="answer"
+                      className="form-control"
+                      id="answer"
+                      cols="122"
+                      rows="3"
+                      required="required"
+                      value={this.state.answer}
+                      onChange={this.handleChange}>
+                    </textarea>
                   </div>
-                  <div className="form-row justify-content-center">
-                    <button
-                      name="save"
-                      type="submit"
-                      className="btn btn-primary mr-2">
-                      Save Card
-                    </button>
-                    <button
-                      name="cancel"
-                      type="reset"
-                      onClick={this.handleReset}
-                      className="btn btn-danger ml-2">
-                      Cancel
-                    </button>
-                  </div>
-                </fieldset>
+                </div>
+                <div className="form-row justify-content-center mb-4">
+                  <button
+                    name="save"
+                    type="submit"
+                    className="btn btn-primary mr-2">
+                    Save Card
+                  </button>
+                  <button
+                    name="cancel"
+                    type="reset"
+                    onClick={this.handleReset}
+                    className="btn btn-danger ml-2">
+                    Cancel
+                  </button>
+                </div>
               </form>
             </div>
           </div>

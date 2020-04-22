@@ -47,11 +47,11 @@ class CreateCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <main className="create-container">
-          <div className="row">
+        <main>
+          <div className="row m-auto">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <form className="form" onSubmit={this.handleSubmit}>
-                <h1 className="text-center mb-4">Create New Card</h1>
+              <form className="form create-form" onSubmit={this.handleSubmit}>
+                <h2 className="text-center my-4 my-cards">Create New Card</h2>
                 <div className="form-row justify-content-center">
                   <div className="form-group">
                     <label htmlFor="question">Question:</label>
@@ -82,18 +82,18 @@ class CreateCard extends Component {
                     </textarea>
                   </div>
                 </div>
-                <div className="form-row justify-content-center">
+                <div className="form-row justify-content-center mb-4">
                   <button
                     name="save"
                     type="submit"
-                    className="btn btn-outline-primary mr-2">
+                    className="btn btn-primary mr-2">
                     Save Card
                   </button>
                   <button
                     name="cancel"
                     type="reset"
                     onClick={this.handleReset}
-                    className="btn btn-outline-danger ml-2">
+                    className="btn btn-danger ml-2">
                     Cancel
                   </button>
                 </div>

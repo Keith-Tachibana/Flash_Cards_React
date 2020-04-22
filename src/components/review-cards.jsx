@@ -89,7 +89,7 @@ class ReviewCards extends Component {
     return (
       <React.Fragment>
         <header>
-          <h1 className="text-center">Review Cards</h1>
+          <h2 className="text-center mt-4 my-cards">Review Cards</h2>
         </header>
         <main className="container mt-4">
           <div className="row">

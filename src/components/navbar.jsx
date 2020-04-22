@@ -44,7 +44,11 @@ class Navbar extends Component {
     return (
       <React.Fragment>
         <nav>
-          <ul className="nav nav-pills justify-content-end mt-4">
+          <div className="nav-title">
+            <h1>React Flash Cards</h1>
+            <p><em>by Keith Tachibana</em></p>
+          </div>
+          <ul className="nav nav-pills d-flex justify-content-end mt-4">
             <li className="nav-item">
               <a onClick={this.handleClickView} className="nav-link link active mr-2">View Cards</a>
             </li>

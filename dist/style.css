@@ -1,6 +1,15 @@
+body {
+  font-family: 'News Cycle', sans-serif;
+}
+
 .link,
 .edit {
   cursor: pointer;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
 }
 
 .carousel {
@@ -24,12 +33,14 @@
   transform: translateY(30%);
   cursor: pointer;
   padding-left: 15px;
+  color: #D3D3D3;
 }
 
 .next {
   transform: translateY(30%);
   cursor: pointer;
   padding-right: 15px;
+  color: #D3D3D3;
 }
 
 .previous:hover,
@@ -86,4 +97,131 @@
 .button-container {
   display: flex;
   justify-content: center;
+}
+
+/*-------- MEDIA QUERIES --------*/
+
+@media only screen
+  and (min-width: 375px)
+  and (max-width: 576px) {
+
+  nav ul li a,
+  .update-form div button,
+  .create-form div button {
+    font-size: 0.75rem;
+  }
+
+  nav {
+    display: inline-block;
+  }
+
+  .my-cards {
+    font-size: 1.75rem;
+  }
+
+  .nav-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: 40px;
+  }
+
+  nav ul {
+    position: relative;
+    left: 40px;
+  }
+
+  .modal-content {
+    min-width: 90%;
+  }
+
+  .view-card {
+    min-width: 50vw;
+  }
+
+  .card-container,
+  .previous,
+  .next {
+    font-size: 1.75rem;
+  }
+
+  .carousel {
+    height: 250px;
+  }
+
+  .carousel div div {
+    font-size: 1.25rem;
+  }
+
+  .edit,
+  .delete {
+    font-size: 1.25rem;
+  }
+}
+
+
+@media only screen
+  and (min-width: 667px)
+  and (max-width: 992px)
+  and (orientation: landscape) {
+
+  nav ul li a,
+  .update-form div button,
+  .create-form div button {
+    font-size: 0.75rem;
+  }
+
+  .card-container {
+    font-size: 1.25rem;
+  }
+
+  .carousel {
+    height: 200px;
+  }
+
+  .carousel div div {
+    font-size: 1.5rem;
+  }
+
+  .previous,
+  .next {
+    font-size: 1.75rem;
+  }
+
+  .my-cards {
+    font-size: 1.75rem;
+  }
+
+  .edit,
+  .delete {
+    font-size: 1rem;
+  }
+
+  .modal-content {
+    min-width: 90%;
+  }
+}
+
+@media only screen
+  and (min-width: 768px)
+  and (max-width: 992px) {
+
+  .modal-content {
+    min-width: 90%;
+  }
+
+  .carousel {
+    height: 400px;
+  }
+}
+
+@media only screen
+  and (min-width: 1024px)
+  and (max-width: 1200px)
+  and (orientation: landscape) {
+
+  .modal-content {
+    min-width: 90%;
+  }
 }
