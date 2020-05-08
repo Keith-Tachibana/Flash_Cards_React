@@ -17,12 +17,12 @@ A front-end application that serves as a study aid through the creation of flash
 ## Live Demo
 Try the application live on [my porftolio website](https://www.keith-tachibana.com/portfolio/flashCards/dist/index.html)
 ## Features
-- _*_ User can create flash cards consisting of a front-side (question) and back-side (answer)
-- _*_ User can view all flash cards at once on a single, summary page
-- _*_ User has the option to edit or delete each card on the summary page
-- _*_ User can test his/her knowledge of the flash cards by going to the review page
-- _*_ User can skim through all the cards on the review page and click on each one to flip it and reveal the answer
-- _*_ User can still see the flash cards upon exiting the browser thanks to the utilization of local storage
+- User can create flash cards consisting of a front-side (question) and back-side (answer)
+- User can view all flash cards at once on a single, summary page
+- User has the option to edit or delete each card on the summary page
+- User can test his/her knowledge of the flash cards by going to the review page
+- User can skim through all the cards on the review page and click on each one to flip it and reveal the answer
+- User can still see the flash cards upon exiting the browser thanks to the utilization of local storage
 ## Preview
 ![Flash Cards Preview](preview.gif "Flash Cards Preview")
 ## Development
