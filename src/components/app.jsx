@@ -25,9 +25,17 @@ class App extends Component {
     this.renderUpdate = this.renderUpdate.bind(this);
   }
 
+  componentDidMount() {
+    if (!localStorage.getItem('first_visit')) {
+      alert('Welcome! To get started, please click on "Create Card" on the next page to create card(s) to review.');
+      localStorage.setItem('first_visit', true);
+    }
+    localStorage.setItem('first_visit', true);
+  }
+
   componentDidUpdate() {
     this.saveCards();
-  }
+    }
 
   setView(view) {
     this.setState({
